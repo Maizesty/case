@@ -1,0 +1,25 @@
+// 标识此文件使用的语法版本是protobuf3
+syntax = "proto3";
+
+//生成go代码相关的option，此option是必要的，不然编译会出错
+option go_package = "../;infer";
+
+
+message ReqData {
+  repeated int32 Keys = 1;
+}
+message Row {
+
+  repeated int32 values = 1;
+
+}
+// 定义响应结构体
+message Resp {
+  float Output = 1;
+  bool Perfect = 2;
+}
+
+// 定义 GRPC 服务
+service MyService {
+  rpc Infer (ReqData) returns (Resp);
+}

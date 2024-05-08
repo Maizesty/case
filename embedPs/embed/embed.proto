@@ -1,0 +1,22 @@
+// 标识此文件使用的语法版本是protobuf3
+syntax = "proto3";
+
+//生成go代码相关的option，此option是必要的，不然编译会出错
+option go_package = "../;embed";
+
+
+message EmbReqData {
+  repeated int32 Keys = 1;
+}
+// 定义响应结构体
+message EmbResp {
+    repeated EmbVector EmbVectors = 1;
+}
+
+message EmbVector{
+    repeated float Element = 1;
+}
+// 定义 GRPC 服务
+service EmbServer {
+  rpc Lookup (EmbReqData) returns (EmbResp);
+}

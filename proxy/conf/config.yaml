@@ -1,0 +1,28 @@
+# Copyright 2022 <mzh.scnu@qq.com>. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+
+# The load balancing algorithms supported by the balancer are:
+# `round-robin` ,`random` ,`p2c` ,`consistent-hash` ,`least-load` ,`bounded` ,`ip-hash`,
+# Among these,`p2c` refers to the power of 2 random choice,
+# `bounded` refers to consistent hash with bounded.
+
+port: 5091                    # port for balancer
+location:                     # route matching for reverse proxy
+  - proxy_pass:                   # URL of the reverse proxy
+    - "49.52.27.54:8886"
+    # - "localhost:18887"
+    # - "localhost:18888"
+    # - "localhost:18889"
+    # - "localhost:18890"
+    # - "localhost:18891"
+    # - "localhost:18892"
+    # - "localhost:18893"
+    # - "localhost:18894"
+    # - "localhost:18895"
+    # - "localhost:18896"
+    # - "localhost:18897"
+    balance_mode: round-robin   # load balancing algorithm
+partition_files: /home/yssun/proxy_partition/
+cache_size: 300000
